@@ -11,11 +11,12 @@
 
 ### Getting Started
 
-1. **Clone the repository**
+### Clone the repository
 
    ```
    git clone https://github.com/Dravid92/lumel-test.git
    cd lumel-test
+   ```
 
 ### No virtualenv
 
