@@ -22,6 +22,6 @@ class Order(models.Model):
     date_of_sales = models.DateField()
     payment_method = models.CharField()
     region_of_sales = models.CharField()
-    customer_id = models.ForeignKey(Customer, db_index=True, on_delete=models.CASCADE)
-    product_id = models.ForeignKey(Product, db_index=True, on_delete=models.CASCADE)
+    customer = models.ForeignKey(Customer, db_index=True, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, db_index=True, on_delete=models.CASCADE)
     ref = models.CharField(max_length=10)

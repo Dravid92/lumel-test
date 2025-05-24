@@ -20,7 +20,7 @@ class RevenueViewSet(ViewSet):
     def list(self, request):
         try:
             start_date_filter = request.GET.get('start_date')
-            end_date_filter = request.GET.get('start_date')
+            end_date_filter = request.GET.get('end_date')
         except:
             return Response("invalid query param", status=400)
 

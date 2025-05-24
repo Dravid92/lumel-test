@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 
 import pandas
 import requests
@@ -19,32 +20,56 @@ class Command(BaseCommand):
         df = pandas.read_excel('lumel.xlsx')
         print(df.columns)
         for index, row in df.iterrows():
-            customer_exists = Customer.objects.filter(email=row['Customer Email']).exists
-            if not customer_exists:
-                customer, _ = Customer.objects.create(
+            customer = Customer.objects.filter(email=row['Customer Email'])
+            if not customer:
+                customer = Customer.objects.create(
                     name=row['Customer Name'],
                     email=row['Customer Email'],
                     address=row['Customer Address']
                 )
+            else:
+                customer = customer.first()
+                customer.name = row['Customer Name']
+                customer.address = row['Customer Address']
+                customer.save()
 
-            product_exists = Product.objects.filter(ref=row['Product ID']).exists
-            if not product_exists:
-                product, _ = Product.objects.create(
+            product = Product.objects.filter(ref=row['Product ID'])
+            if not product:
+                product = Product.objects.create(
                     name=row['Product Name'],
                     category=row['Category'],
-                    region=row['Unit Price'],
+                    unit_price=row['Unit Price'],
                     quantity=row['Quantity Sold'],
                     discount=row['Discount'],
                     shipping_cost=row['Shipping Cost'],
+                    ref=row['Product ID']
                 )
-            order_exists = Order.objects.filter(id=row['Order ID']).exists
-            date_of_sale = str(row['Date of Sale'])
-            if not order_exists:
-                order, created = Order.objects.create(
+            else:
+                product = product.first()
+                product.name = row['Product Name']
+                product.category = row['Category']
+                product.unit_price = row['Unit Price']
+                product.quantity = row['Quantity Sold']
+                product.discount = row['Discount']
+                product.shipping_cost = row['Shipping Cost']
+                product.save()
+            order = Order.objects.filter(ref=row['Order ID'])
+            date_of_sale = datetime.strptime(str(row['Date of Sale']), "%Y-%m-%d %H:%M:%S").date()
+            if not order:
+                order = Order.objects.create(
                     date_of_sales=date_of_sale,
                     payment_method=row['Payment Method'],
                     region_of_sales=row['Region'],
                     customer_id=customer.id,
-                    product_id=product.id
+                    product_id=product.id,
+                    ref=row['Order ID']
                 )
-        return 1
+            else:
+                order = order.first()
+                order.date_of_sales = date_of_sale
+                order.payment_method = row['Payment Method']
+                order.region_of_sales = row['Region']
+                order.customer_id = customer.id
+                order.product_id = product.id
+                order.save()
+        return "all ok"
