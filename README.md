@@ -55,8 +55,6 @@ python manage.py import_sales.py
 - This same script can be used to update the data as well - this can be achieved by setting up a cron job in the server.
 ## API Endpoints
 
-## 🌐 API Endpoints
-
 | Endpoint | Query Parameters | Description | Response Example |
 |----------|------------------|-------------|------------------|
 | `/revenue` | `start_date=YYYY-MM-DD`<br>`end_date=YYYY-MM-DD` | Get **Total Revenue** for a date range. | `{ "total_revenue": <amount> }` |
