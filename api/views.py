@@ -18,11 +18,15 @@ class OrderSerializer(serializers.ModelSerializer):
 # Create your views here.
 class RevenueViewSet(ViewSet):
     def list(self, request):
-        start_date_filter = request.GET.get('start_date')
-        end_date_filter = request.GET.get('start_date')
-        product_filter = request.GET.get('product_id')
-        category_filter = request.GET.get('category')
-        region_filter = request.GET.get('region')
+        try:
+            start_date_filter = request.GET.get('start_date')
+            end_date_filter = request.GET.get('start_date')
+        except:
+            return Response("invalid query param", status=400)
+
+        product_filter = request.GET.get('product_id', None)
+        category_filter = request.GET.get('category', None)
+        region_filter = request.GET.get('region', None)
         start_date_obj = datetime.strptime(start_date_filter, "%Y-%m-%d")
         end_date_obj = datetime.strptime(end_date_filter, "%Y-%m-%d")
         sales = Order.objects.get(date_of_sales__range=(start_date_obj, end_date_obj))

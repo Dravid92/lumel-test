@@ -41,3 +41,17 @@ Then simply apply the migrations:
 You can now run the development server:
 
     $ python manage.py runserver
+
+## 🌐 API Endpoints
+
+| Endpoint | Query Parameters | Response Example |
+|----------|------------------|------------------|
+| `/revenue` | `start_date=YYYY-MM-DD`<br>`end_date=YYYY-MM-DD` | `{ "total_revenue": <total revenue> }` |
+| `/revenue` | `start_date=YYYY-MM-DD`<br>`end_date=YYYY-MM-DD`<br>`product_id=#`<br>`category=#`<br>`region=#` | `{ "total_revenue": <total revenue> }` |
+
+---
+
+### Example
+
+```bash
+GET /revenue?start_date=2024-01-01&end_date=2024-12-31
