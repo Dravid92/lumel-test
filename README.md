@@ -41,7 +41,15 @@ Then simply apply the migrations:
 You can now run the development server:
 
     $ python manage.py runserver
+- If the server is running fine , this should be coming up in the command line.
 
+```
+System check identified no issues (0 silenced).
+May 24, 2025 - 12:44:03
+Django version 5.2.1, using settings 'lumel.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+```
 ## Import Data
 
 - In order import data you have to run the following command after running the migration
