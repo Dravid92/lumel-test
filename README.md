@@ -23,9 +23,9 @@
 This assumes that `python3` is linked to valid installation of python 3 and that `pip` is installed and `pip3`is valid
 for installing python 3 packages.
 
-Installing inside virtualenv is recommended, however you can start your project without virtualenv too.
+Installing inside virtualenv is needed
 
-If you don't have django installed for python 3 then run:
+run to install all requirements for the project:
 
     $ pip install -r requirements.txt
     
