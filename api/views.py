@@ -31,7 +31,7 @@ class RevenueViewSet(ViewSet):
         end_date_obj = datetime.strptime(end_date_filter, "%Y-%m-%d")
         sales = Order.objects.filter(date_of_sales__range=(start_date_obj, end_date_obj))
         if product_filter:
-            sales = sales.filter(product_id=product_filter)
+            sales = sales.filter(product__ref=product_filter)
         if category_filter:
             sales = sales.filter(product__category=category_filter)
         if region_filter:
