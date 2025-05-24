@@ -86,7 +86,7 @@ GET /revenue/?start_date=2023-12-15&end_date=2024-12-31
 - Example Response
 ```
 {
-  "total_revenue": 3814.4635
+  "total_revenue": 3680.4635
 }
 ```
 
@@ -144,7 +144,8 @@ GET /revenue/?start_date=2023-12-15&end_date=2024-12-31
 - constraints for uniqueness and not mandatory ones are not added because of time constraints.
 
 ### Logic for Total Revenue Calculation
-- For each sale the below logic is used to calculate the total sum and cumulatively added and returned. 
+- For each sale the product associated with it is fetched to apply the below logic 
+- The below formula was used to calculate the total sum , which was cumulatively added and returned. 
 ```
 Total Revenue = (Quantity * Unit Price) - Discount Amount - Shipping Cost
 ```
