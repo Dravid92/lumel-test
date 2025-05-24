@@ -141,3 +141,4 @@ GET /revenue/?start_date=2023-12-15&end_date=2024-12-31
 ### Trade-Offs / Assumptions - DB Schema
 - Its assumed that the customers are unique based off of email address 
 - "ref" field is for the reference id of the order or the product connected to an order - for humans
+- constraints for uniqueness and not mandatory ones are not added because of time constraints.
