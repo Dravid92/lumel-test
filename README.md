@@ -23,7 +23,7 @@
 This assumes that `python3` is linked to valid installation of python 3 and that `pip` is installed and `pip3`is valid
 for installing python 3 packages.
 
-Installing inside virtualenv is needed
+Installing inside virtualenv is needed and before running the below commands make sure you are in the env.
 
 run to install all requirements for the project:
 
