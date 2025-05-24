@@ -18,7 +18,7 @@
    cd lumel-test
    ```
 
-### No virtualenv
+### Set up virtualenv
 
 This assumes that `python3` is linked to valid installation of python 3 and that `pip` is installed and `pip3`is valid
 for installing python 3 packages.
