@@ -50,6 +50,23 @@ Django version 5.2.1, using settings 'lumel.settings'
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CTRL-BREAK.
 ```
+
+### Project Structure
+- This is a typical Django Project Structure (MVC)
+- Inside the lumel folder you will find two folders (api & lumel)
+``` 
+  - api (app)
+    - management (files here can be run independently - django proviision to run isolated functionalities -> Best for Data Processing)
+    - migrations (table changes)
+    - models.py - Tables
+    - views.py - Logic
+    - urls.py - Router (Django Rest framework)
+  - lumel (project)
+    - settings.py - Forms the base interface for Django to speak with ORM
+    - urls.py - Global Router for Djngo apps linked to the project
+    - wsgi.py - for server connectivity
+  - manage.py - main
+```
 ## Import Data
 
 - In order import data you have to run the following command after running the migration
@@ -155,3 +172,6 @@ Here is the Python code - you can find this in views.py
         discount_amount = sale.product.unit_price * discount
         total_revenue += (sale.product.quantity * sale.product.unit_price) - discount_amount - sale.product.shipping_cost
 ```
+
+
+# Thanks for the Opportunity - this was fun anyway :)
