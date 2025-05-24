@@ -1,12 +1,10 @@
 import os
-from datetime import datetime
 
 import pandas
 import requests
 from django.core.management import BaseCommand
 
 from api.models import Customer, Product, Order
-from lumel.settings import BASE_DIR
 
 
 class Command(BaseCommand):
