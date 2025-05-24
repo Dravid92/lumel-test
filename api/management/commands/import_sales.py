@@ -11,6 +11,7 @@ class Command(BaseCommand):
     # Can be used for import and update
     def handle(self, *args, **kwargs):
         print("Downloading data...")
+        # Note: Assume this is the data sheet
         url = "https://docs.google.com/spreadsheets/u/1/d/16FlCbvqT15RvbIzbHKLVpV9aB0BxEE6g8eTWDX00WAM/export?format=xlsx&id=16FlCbvqT15RvbIzbHKLVpV9aB0BxEE6g8eTWDX00WAM"
         r = requests.get(url, allow_redirects=True)
         with open("lumel.xlsx", "wb") as f:
@@ -20,14 +21,27 @@ class Command(BaseCommand):
         for index, row in df.iterrows():
             customer, _ = Customer.objects.get_or_create(
                 id=row['Customer ID'],
-
-
+                name=row['Customer Name'],
+                email=row['Customer Email'],
+                address=row['Customer Address']
             )
 
             product, _ = Product.objects.get_or_create(
                 id=row['Product ID'],
+                name=row['Product Name'],
+                category=row['Category'],
+                region=row['Unit Price'],
+                quantity=row['Quantity Sold'],
+                discount=row['Discount'],
+                shipping_cost=row['Shipping Cost'],
             )
             date_of_sale = str(row['Date of Sale'])
             order, created = Order.objects.update_or_create(
                 id=row['Order ID'],
+                date_of_sales=date_of_sale,
+                payment_method=row['Payment Method'],
+                region_of_sales=row['Region'],
+                customer_id=customer.id,
+                product_id=product.id
             )
+        return 1

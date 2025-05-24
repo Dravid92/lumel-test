@@ -57,7 +57,7 @@ You can now run the development server:
 GET /revenue?start_date=2024-01-01&end_date=2024-12-31
 ```
 
-### Updates and Imports
+### Updates and Imports - Using Cron - Django Management Command
 
 - All data can be imported and updated via a single import script
 - Best practice would be isolated functionality 
