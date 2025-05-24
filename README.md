@@ -142,3 +142,14 @@ GET /revenue/?start_date=2023-12-15&end_date=2024-12-31
 - Its assumed that the customers are unique based off of email address 
 - "ref" field is for the reference id of the order or the product connected to an order - for humans
 - constraints for uniqueness and not mandatory ones are not added because of time constraints.
+
+### Logic for Total Revenue Calculation
+- For each sale the below logic is used to calculate the total sum and cumulatively added and returned. 
+```
+Total Revenue = (Quantity * Unit Price) - Discount Amount - Shipping Cost
+```
+```python
+        discount = sale.product.discount
+        discount_amount = sale.product.unit_price * discount
+        total_revenue += (sale.product.quantity * sale.product.unit_price) - discount_amount - sale.product.shipping_cost
+```

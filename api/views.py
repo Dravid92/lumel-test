@@ -45,6 +45,6 @@ class RevenueViewSet(ViewSet):
         for sale in sales:
             discount = sale.product.discount
             discount_amount = sale.product.unit_price * discount
-            total_revenue += (sale.product.quantity * sale.product.unit_price) - discount_amount + sale.product.shipping_cost
+            total_revenue += (sale.product.quantity * sale.product.unit_price) - discount_amount - sale.product.shipping_cost
         return total_revenue
 
