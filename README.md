@@ -4,8 +4,8 @@
 
 - Python 3.10+
 - pip
-- Virtualenv (optional but recommended)
-- PostgreSQL/MySQL/SQLite (based on your project)
+- Virtualenv 
+- MySQL
 
 ---
 
