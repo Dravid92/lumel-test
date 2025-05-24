@@ -55,3 +55,13 @@ You can now run the development server:
 
 ```bash
 GET /revenue?start_date=2024-01-01&end_date=2024-12-31
+
+
+### Updates and Imports
+
+- All data can be imported and updated via a single import script
+- Best practice would be isolated functionality 
+
+
+### Please Note:
+- I couldn't complete the import script or test the system completely in the stipulated time. :(
