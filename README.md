@@ -149,6 +149,7 @@ GET /revenue/?start_date=2023-12-15&end_date=2024-12-31
 ```
 Total Revenue = (Quantity * Unit Price) - Discount Amount - Shipping Cost
 ```
+Here is the Python code - you can find this in views.py
 ```python
         discount = sale.product.discount
         discount_amount = sale.product.unit_price * discount
