@@ -55,7 +55,7 @@ You can now run the development server:
 
 ```bash
 GET /revenue?start_date=2024-01-01&end_date=2024-12-31
-
+```
 
 ### Updates and Imports
 
