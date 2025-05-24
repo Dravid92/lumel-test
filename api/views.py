@@ -18,10 +18,9 @@ class OrderSerializer(serializers.ModelSerializer):
 # Create your views here.
 class RevenueViewSet(ViewSet):
     def list(self, request):
-        try:
-            start_date_filter = request.GET.get('start_date')
-            end_date_filter = request.GET.get('end_date')
-        except:
+        start_date_filter = request.GET.get('start_date')
+        end_date_filter = request.GET.get('end_date')
+        if not start_date_filter or not end_date_filter:
             return Response("invalid query param", status=400)
 
         product_filter = request.GET.get('product_id', None)
