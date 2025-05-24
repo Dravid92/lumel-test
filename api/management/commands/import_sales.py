@@ -19,29 +19,32 @@ class Command(BaseCommand):
         df = pandas.read_excel('lumel.xlsx')
         print(df.columns)
         for index, row in df.iterrows():
-            customer, _ = Customer.objects.get_or_create(
-                id=row['Customer ID'],
-                name=row['Customer Name'],
-                email=row['Customer Email'],
-                address=row['Customer Address']
-            )
+            customer_exists = Customer.objects.filter(email=row['Customer Email']).exists
+            if not customer_exists:
+                customer, _ = Customer.objects.create(
+                    name=row['Customer Name'],
+                    email=row['Customer Email'],
+                    address=row['Customer Address']
+                )
 
-            product, _ = Product.objects.get_or_create(
-                id=row['Product ID'],
-                name=row['Product Name'],
-                category=row['Category'],
-                region=row['Unit Price'],
-                quantity=row['Quantity Sold'],
-                discount=row['Discount'],
-                shipping_cost=row['Shipping Cost'],
-            )
+            product_exists = Product.objects.filter(ref=row['Product ID']).exists
+            if not product_exists:
+                product, _ = Product.objects.create(
+                    name=row['Product Name'],
+                    category=row['Category'],
+                    region=row['Unit Price'],
+                    quantity=row['Quantity Sold'],
+                    discount=row['Discount'],
+                    shipping_cost=row['Shipping Cost'],
+                )
+            order_exists = Order.objects.filter(id=row['Order ID']).exists
             date_of_sale = str(row['Date of Sale'])
-            order, created = Order.objects.update_or_create(
-                id=row['Order ID'],
-                date_of_sales=date_of_sale,
-                payment_method=row['Payment Method'],
-                region_of_sales=row['Region'],
-                customer_id=customer.id,
-                product_id=product.id
-            )
+            if not order_exists:
+                order, created = Order.objects.create(
+                    date_of_sales=date_of_sale,
+                    payment_method=row['Payment Method'],
+                    region_of_sales=row['Region'],
+                    customer_id=customer.id,
+                    product_id=product.id
+                )
         return 1

@@ -15,6 +15,7 @@ class Product(models.Model):
     quantity = models.IntegerField()
     discount = models.DecimalField(decimal_places=2, max_digits=5)
     shipping_cost = models.DecimalField(decimal_places=2, max_digits=10)
+    ref = models.CharField(max_length=10)
 
 
 class Order(models.Model):
@@ -23,3 +24,4 @@ class Order(models.Model):
     region_of_sales = models.CharField()
     customer_id = models.ForeignKey(Customer, db_index=True, on_delete=models.CASCADE)
     product_id = models.ForeignKey(Product, db_index=True, on_delete=models.CASCADE)
+    ref = models.CharField(max_length=10)
