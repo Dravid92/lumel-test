@@ -91,7 +91,53 @@ GET /revenue/?start_date=2023-12-15&end_date=2024-12-31
 ```
 
 
-### Updates and Imports - Using Cron - Django Management Command
+### Updates and Imports - Using Cron & Django Management Command
 
 - All data can be imported and updated via a single import script
 - Best practice would be isolated functionality 
+
+
+## Database Schema
+
+### 1️. Customer
+
+
+| Field Name | Data Type |
+|------------|-----------|
+| `id` | AutoField (Primary Key) |
+| `name` | CharField (max_length=50) |
+| `email` | EmailField |
+| `address` | TextField |
+
+---
+
+### 2️.  Product
+
+| Field Name | Data Type |
+|------------|-----------|
+| `id` | AutoField (Primary Key) |
+| `name` | CharField (max_length=100) |
+| `category` | CharField (max_length=100) |
+| `unit_price` | DecimalField (max_digits=10, decimal_places=2) |
+| `quantity` | IntegerField |
+| `discount` | DecimalField (max_digits=5, decimal_places=2) |
+| `shipping_cost` | DecimalField (max_digits=10, decimal_places=2) |
+| `ref` | CharField (max_length=10) |
+
+---
+
+### 3️. Order
+
+| Field Name | Data Type |
+|------------|-----------|
+| `id` | AutoField (Primary Key) |
+| `date_of_sales` | DateField |
+| `payment_method` | CharField |
+| `region_of_sales` | CharField |
+| `customer` | ForeignKey (to Customer) |
+| `product` | ForeignKey (to Product) |
+| `ref` | CharField (max_length=10) |
+
+### Trade-Offs / Assumptions - DB Schema
+- Its assumed that the customers are unique based off of email address 
+- "ref" field is for the reference id of the order or the product connected to an order - for humans
