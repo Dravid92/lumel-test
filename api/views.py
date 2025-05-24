@@ -21,7 +21,7 @@ class RevenueViewSet(ViewSet):
         start_date_filter = request.GET.get('start_date')
         end_date_filter = request.GET.get('end_date')
         if not start_date_filter or not end_date_filter:
-            return Response("invalid query param", status=400)
+            return Response("invalid query param - requires start and end date atleast", status=400)
 
         product_filter = request.GET.get('product_id', None)
         category_filter = request.GET.get('category', None)
