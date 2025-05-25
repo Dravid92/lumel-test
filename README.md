@@ -73,7 +73,7 @@ Quit the server with CTRL-BREAK.
 - This is the [excel sheet](https://docs.google.com/spreadsheets/d/16FlCbvqT15RvbIzbHKLVpV9aB0BxEE6g8eTWDX00WAM/edit?gid=1552958878#gid=1552958878) used to import data
 
 ```commandline
-python manage.py import_sales.py
+python manage.py import_sales
 ```
 - The above command should return "all ok"
 ## Update Data 
